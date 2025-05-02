@@ -88,21 +88,21 @@ local function start_highlight_backward(all_hl, char_hl)
     end, temp)
 end
 return {
-    setup = function(all_hl, char_hl)
+    setup = function(opts)
         vim.keymap.set('n', 'f', function()
-            start_highlight_forward(all_hl, char_hl)
+            start_highlight_forward(opts.all_hl, opts.char_hl)
             return 'f'
         end, { expr = true })
         vim.keymap.set('n', 't', function()
-            start_highlight_forward(all_hl, char_hl)
+            start_highlight_forward(opts.all_hl, opts.char_hl)
             return 't'
         end, { expr = true })
         vim.keymap.set('n', 'F', function()
-            start_highlight_backward(all_hl, char_hl)
+            start_highlight_backward(opts.all_hl, opts.char_hl)
             return 'f'
         end, { expr = true })
         vim.keymap.set('n', 'T', function()
-            start_highlight_backward(all_hl, char_hl)
+            start_highlight_backward(opts.all_hl, opts.char_hl)
             return 't'
         end, { expr = true })
     end
