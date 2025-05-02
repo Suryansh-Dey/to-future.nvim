@@ -48,7 +48,7 @@ local function highlight_backward(bufnr, hl)
     local line = vim.api.nvim_buf_get_lines(bufnr, row, row + 1, false)[1]
 
     local matches = {}
-    for i = col + 1, 0, -1 do
+    for i = col, 0, -1 do
         local char = line:sub(i, i)
         if matches[char] and char ~= ' ' then
             vim.api.nvim_buf_set_extmark(bufnr, ns_id, row, i - 1, {
@@ -99,11 +99,11 @@ return {
         end, { expr = true })
         vim.keymap.set('n', 'F', function()
             start_highlight_backward(opts.all_hl, opts.char_hl)
-            return 'f'
+            return 'F'
         end, { expr = true })
         vim.keymap.set('n', 'T', function()
             start_highlight_backward(opts.all_hl, opts.char_hl)
-            return 't'
+            return 'T'
         end, { expr = true })
     end
 }
