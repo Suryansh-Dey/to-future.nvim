@@ -1,3 +1,4 @@
+local M = {}
 local ns_id = vim.api.nvim_create_namespace("to-future_line_highlight_ns")
 local function highlight_char(bufnr, matches, hl)
     vim.api.nvim_buf_clear_namespace(bufnr, ns_id, 0, -1)
@@ -67,7 +68,7 @@ local function highlight_backward(bufnr, hl)
     end
     return matches
 end
-local function start_highlight_forward(all_hl)
+M.start_highlight_forward = function(all_hl)
     local bufnr = vim.api.nvim_get_current_buf()
     local matches = highlight_forward(bufnr, all_hl)
     vim.cmd('redraw')
@@ -85,7 +86,7 @@ local function start_highlight_forward(all_hl)
         done = true
     end, temp)
 end
-local function start_highlight_backward(all_hl)
+M.start_highlight_backward = function(all_hl)
     local bufnr = vim.api.nvim_get_current_buf()
     local matches = highlight_backward(bufnr, all_hl)
     vim.cmd('redraw')
@@ -103,23 +104,5 @@ local function start_highlight_backward(all_hl)
         done = true
     end, temp)
 end
-return {
-    setup = function(opts)
-        vim.keymap.set({ 'n', 'v', 'o', 'x' }, 'f', function()
-            start_highlight_forward(opts.all_hl)
-            return 'f'
-        end, { expr = true })
-        vim.keymap.set({ 'n', 'v', 'o', 'x' }, 't', function()
-            start_highlight_forward(opts.all_hl)
-            return 't'
-        end, { expr = true })
-        vim.keymap.set({ 'n', 'v', 'o', 'x' }, 'F', function()
-            start_highlight_backward(opts.all_hl)
-            return 'F'
-        end, { expr = true })
-        vim.keymap.set({ 'n', 'v', 'o', 'x' }, 'T', function()
-            start_highlight_backward(opts.all_hl)
-            return 'T'
-        end, { expr = true })
-    end
-}
+
+return M

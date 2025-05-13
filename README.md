@@ -7,6 +7,14 @@ https://github.com/user-attachments/assets/fb2ea0aa-cb20-4936-9382-8960c62ef0b3
 
 # setup in lazy
 ```lua
+return {
+    "suryansh-dey/to-future.nvim",
+    event = "VeryLazy",
+    opts = {}
+}
+```
+## Defaults
+```lua
 vim.api.nvim_set_hl(0, "to-future-hi-1", { bg = "#ffffff", fg = "#000000", bold = true })
 vim.api.nvim_set_hl(0, "to-future-hi-2", { bg = "#ffff00", fg = "#000000", bold = true })
 vim.api.nvim_set_hl(0, "to-future-hi-3", { bg = "#ff8800", fg = "#000000", bold = true })
